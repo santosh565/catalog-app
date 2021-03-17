@@ -8,13 +8,12 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   String username = '';
+  bool isButtonChanged = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // resizeToAvoidBottomInset: true,
-      // resizeToAvoidBottomPadding: true,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -30,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
               child: Column(
                 children: [
                   TextFormField(
@@ -52,15 +51,35 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               height: 20,
             ),
-            ElevatedButton(
-              onPressed: () {
+            InkWell(
+              onTap: () async {
+                setState(() {
+                  isButtonChanged = true;
+                });
+
+                await Future.delayed(Duration(seconds: 1));
                 Navigator.pushNamed(context, MyRoutes.homeRoute);
               },
-              child: Text("Login"),
-              style: TextButton.styleFrom(
-                minimumSize: Size(150, 40),
+              child: AnimatedContainer(
+                height: 50,
+                width: isButtonChanged ? 50 : 150,
+                decoration: BoxDecoration(
+                  color: Colors.deepPurple,
+                  borderRadius: BorderRadius.circular(isButtonChanged ? 50 : 8),
+                ),
+                duration: Duration(seconds: 1),
+                alignment: Alignment.center,
+                child: isButtonChanged
+                    ? Icon(
+                        Icons.done,
+                        color: Colors.white,
+                      )
+                    : Text(
+                        "Login",
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      ),
               ),
-            ),
+            )
           ],
         ),
       ),

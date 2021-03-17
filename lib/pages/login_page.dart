@@ -9,6 +9,20 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String username = '';
   bool isButtonChanged = false;
+  final _formKey = GlobalKey<FormState>();
+
+  moveToHomePage(BuildContext context) async {
+    if (_formKey.currentState.validate()) {
+      setState(() {
+        isButtonChanged = true;
+      });
+      await Future.delayed(Duration(seconds: 1));
+      await Navigator.pushNamed(context, MyRoutes.homeRoute);
+      setState(() {
+        isButtonChanged = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,22 +44,40 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              child: Column(
-                children: [
-                  TextFormField(
-                    decoration: InputDecoration(
-                        hintText: "Enter username", labelText: "Username"),
-                    onChanged: (value) {
-                      username = value;
-                      setState(() {});
-                    },
-                  ),
-                  TextFormField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        hintText: "Enter password", labelText: "Password"),
-                  )
-                ],
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      decoration: InputDecoration(
+                          hintText: "Enter username", labelText: "Username"),
+                      onChanged: (value) {
+                        username = value;
+                        setState(() {});
+                      },
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return "Username cannot be empty";
+                        }
+                        return null;
+                      },
+                    ),
+                    TextFormField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                          hintText: "Enter password", labelText: "Password"),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return "Password cannot be empty";
+                        }
+                        if (value.length < 6) {
+                          return "Password length should be atleast 6";
+                        }
+                        return null;
+                      },
+                    )
+                  ],
+                ),
               ),
             ),
             SizedBox(
@@ -55,16 +87,7 @@ class _LoginPageState extends State<LoginPage> {
               color: Colors.deepPurple,
               borderRadius: BorderRadius.circular(isButtonChanged ? 50 : 8),
               child: InkWell(
-                onTap: () async {
-                  setState(() {
-                    isButtonChanged = true;
-                  });
-                  await Future.delayed(Duration(seconds: 1));
-                  await Navigator.pushNamed(context, MyRoutes.homeRoute);
-                  setState(() {
-                    isButtonChanged = false;
-                  });
-                },
+                onTap: () => moveToHomePage(context),
                 child: AnimatedContainer(
                   height: 50,
                   width: isButtonChanged ? 50 : 150,

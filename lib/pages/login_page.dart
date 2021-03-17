@@ -18,7 +18,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: [
             Image.asset(
-              "assets/images/login_image.png",
+              "assets/images/welcome_image.png",
               fit: BoxFit.cover,
             ),
             SizedBox(
@@ -51,33 +51,35 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               height: 20,
             ),
-            InkWell(
-              onTap: () async {
-                setState(() {
-                  isButtonChanged = true;
-                });
-
-                await Future.delayed(Duration(seconds: 1));
-                Navigator.pushNamed(context, MyRoutes.homeRoute);
-              },
-              child: AnimatedContainer(
-                height: 50,
-                width: isButtonChanged ? 50 : 150,
-                decoration: BoxDecoration(
-                  color: Colors.deepPurple,
-                  borderRadius: BorderRadius.circular(isButtonChanged ? 50 : 8),
+            Material(
+              color: Colors.deepPurple,
+              borderRadius: BorderRadius.circular(isButtonChanged ? 50 : 8),
+              child: InkWell(
+                onTap: () async {
+                  setState(() {
+                    isButtonChanged = true;
+                  });
+                  await Future.delayed(Duration(seconds: 1));
+                  await Navigator.pushNamed(context, MyRoutes.homeRoute);
+                  setState(() {
+                    isButtonChanged = false;
+                  });
+                },
+                child: AnimatedContainer(
+                  height: 50,
+                  width: isButtonChanged ? 50 : 150,
+                  duration: Duration(seconds: 1),
+                  alignment: Alignment.center,
+                  child: isButtonChanged
+                      ? Icon(
+                          Icons.done,
+                          color: Colors.white,
+                        )
+                      : Text(
+                          "Login",
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                 ),
-                duration: Duration(seconds: 1),
-                alignment: Alignment.center,
-                child: isButtonChanged
-                    ? Icon(
-                        Icons.done,
-                        color: Colors.white,
-                      )
-                    : Text(
-                        "Login",
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
               ),
             )
           ],

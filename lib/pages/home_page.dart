@@ -1,24 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/widgets/my_drawer.dart';
+
+import '../models/catalog.dart';
+import '../widgets/item_widget.dart';
+import '../widgets/my_drawer.dart';
 
 class MyHomePage extends StatefulWidget {
-  // MyHomePage({Key key, this.title}) : super(key: key);
-
-  // final String title;
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,21 +19,14 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
         title: Text("Catalog App"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-          ],
-        ),
+      body: ListView.builder(
+        itemCount: CatalogModel.item.length,
+        itemBuilder: (context, index) {
+          return ItemWidget(
+            item: CatalogModel.item[index],
+          );
+        },
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: _incrementCounter,
-      //   tooltip: 'Increment',
-      //   child: Icon(Icons.add),
-      // ),
     );
   }
 }

@@ -13,6 +13,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<Product> products;
   @override
   void initState() {
     super.initState();
@@ -25,11 +26,10 @@ class _MyHomePageState extends State<MyHomePage> {
         await rootBundle.loadString("assets/files/catalog.json");
     final decodedData = jsonDecode(catalogJson);
     var productsData = decodedData["products"];
-    CatalogModel.items = List.from(productsData)
-        .map<Item>((item) => Item.fromMap(item))
+    products = List.from(productsData)
+        .map<Product>((product) => Product.fromMap(product))
         .toList();
     setState(() {});
-    print(productsData);
   }
 
   @override
@@ -43,12 +43,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
+          child: (products != null && products.isNotEmpty)
               ? ListView.builder(
-                  itemCount: CatalogModel.items.length,
+                  itemCount: products.length,
                   itemBuilder: (context, index) {
-                    return ItemWidget(
-                      item: CatalogModel.items[index],
+                    return ProductWidget(
+                      product: products[index],
                     );
                   },
                 )

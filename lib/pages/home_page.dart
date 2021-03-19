@@ -45,9 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
               if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
                 CatalogList().expand()
               else
-                Center(
-                  child: CircularProgressIndicator(),
-                )
+                CircularProgressIndicator().centered().expand()
             ],
           ),
         ),
@@ -116,7 +114,7 @@ class CatalogItem extends StatelessWidget {
                         shape: MaterialStateProperty.all(StadiumBorder())),
                   )
                 ],
-              ).p8(),
+              ).pOnly(right: 8),
             ],
           ))
         ],

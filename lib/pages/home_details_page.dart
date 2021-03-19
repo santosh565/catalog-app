@@ -14,10 +14,8 @@ class HomeDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // leading: Icon(CupertinoIcons.back),
-        backgroundColor: Mytheme.creamColor,
+        backgroundColor: Colors.transparent,
       ),
-      backgroundColor: Mytheme.creamColor,
       body: SafeArea(
         bottom: false,
         child: Column(
@@ -43,8 +41,13 @@ class HomeDetailsPage extends StatelessWidget {
                     catalog.desc.text.xl.semiBold
                         .textStyle(context.captionStyle)
                         .make(),
+                    "Vero aliquyam ea sed et sed clita. Eos et at sit ea magna erat clita. At lorem no kasd dolores ipsum takimata diam, dolor clita et clita consetetur gubergren. Eirmod dolores dolor magna kasd, no sit et takimata sit dolores. No magna sea sanctus rebum, kasd dolor dolor amet tempor."
+                        .text
+                        .textStyle(context.captionStyle)
+                        .make()
+                        .p16()
                   ],
-                ).py64(),
+                ).py32(),
               ),
             ))
           ],

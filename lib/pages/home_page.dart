@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../utils/mytheme.dart';
@@ -51,6 +52,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Mytheme.darkBluishColor,
+        onPressed: () {},
+        child: Icon(CupertinoIcons.cart),
       ),
     );
   }

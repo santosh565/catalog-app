@@ -2,6 +2,11 @@ import 'dart:convert';
 
 class CatalogModel {
   static List<Item> items;
+
+  static getItemById(int id) =>
+      items.firstWhere((element) => element.id == id, orElse: null);
+
+  static getItemByPosition(int position) => items[position];
 }
 
 class Item {
@@ -63,8 +68,7 @@ class Item {
 
   String toJson() => json.encode(toMap());
 
-  factory Item.fromJson(String source) =>
-      Item.fromMap(json.decode(source));
+  factory Item.fromJson(String source) => Item.fromMap(json.decode(source));
 
   @override
   String toString() {

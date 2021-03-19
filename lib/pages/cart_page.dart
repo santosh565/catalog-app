@@ -5,8 +5,9 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Mytheme.creamColor,
       appBar: AppBar(
+        centerTitle: true,
+        title: Text("Cart"),
         backgroundColor: Colors.transparent,
       ),
       body: Container(

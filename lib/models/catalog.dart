@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-// class CatalogModel {
-//   static List<Product> items;
-// }
+class CatalogModel {
+  static List<Item> items;
+}
 
-class Product {
+class Item {
   final int id;
   final String name;
   final String desc;
@@ -12,7 +12,7 @@ class Product {
   final String color;
   final String image;
 
-  Product({
+  Item({
     this.id,
     this.name,
     this.desc,
@@ -21,7 +21,7 @@ class Product {
     this.image,
   });
 
-  Product copyWith({
+  Item copyWith({
     int id,
     String desc,
     String name,
@@ -29,7 +29,7 @@ class Product {
     String color,
     String image,
   }) {
-    return Product(
+    return Item(
       id: id ?? this.id,
       name: name ?? this.name,
       desc: desc ?? this.desc,
@@ -50,8 +50,8 @@ class Product {
     };
   }
 
-  factory Product.fromMap(Map<String, dynamic> map) {
-    return Product(
+  factory Item.fromMap(Map<String, dynamic> map) {
+    return Item(
       id: map['id'],
       name: map['name'],
       desc: map['desc'],
@@ -63,18 +63,19 @@ class Product {
 
   String toJson() => json.encode(toMap());
 
-  factory Product.fromJson(String source) => Product.fromMap(json.decode(source));
+  factory Item.fromJson(String source) =>
+      Item.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, desc: $desc, price: $price, color: $color, image: $image)';
+    return 'Item(id: $id, name: $name, desc: $desc, price: $price, color: $color, image: $image)';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Product &&
+    return other is Item &&
         other.id == id &&
         other.name == name &&
         other.desc == desc &&

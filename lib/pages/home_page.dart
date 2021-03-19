@@ -94,16 +94,50 @@ class CatalogItem extends StatelessWidget {
     return VxBox(
       child: Row(
         children: [
-          Image.network(catalog.image)
-              .box
-              .rounded
-              .p8
-              .color(Mytheme.creamColor)
-              .make()
-              .p16()
-              .w40(context)
+          CatalogImage(image: catalog.image),
+          Expanded(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              catalog.name.text.lg.color(Mytheme.darkBluishColor).bold.make(),
+              catalog.desc.text.semiBold.textStyle(context.captionStyle).make(),
+              10.heightBox,
+              ButtonBar(
+                alignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  "\$${catalog.price}".text.bold.xl.make(),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: "Buy".text.make(),
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Mytheme.darkBluishColor),
+                        shape: MaterialStateProperty.all(StadiumBorder())),
+                  )
+                ],
+              ).p8(),
+            ],
+          ))
         ],
       ),
     ).white.rounded.square(150).make().py16();
+  }
+}
+
+class CatalogImage extends StatelessWidget {
+  final String image;
+
+  const CatalogImage({Key key, @required this.image}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Image.network(image)
+        .box
+        .rounded
+        .p8
+        .color(Mytheme.creamColor)
+        .make()
+        .p16()
+        .w32(context);
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 import '../utils/routes.dart';
 
 class LoginPage extends StatefulWidget {
@@ -27,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -84,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
               height: 20,
             ),
             Material(
-              color: Colors.deepPurple,
+              color: context.theme.buttonColor,
               borderRadius: BorderRadius.circular(isButtonChanged ? 50 : 8),
               child: InkWell(
                 onTap: () => moveToHomePage(context),

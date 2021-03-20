@@ -3,10 +3,10 @@ import 'dart:convert';
 class CatalogModel {
   static List<Item> items;
 
-  static getItemById(int id) =>
+   getItemById(int id) =>
       items.firstWhere((element) => element.id == id, orElse: null);
 
-  static getItemByPosition(int position) => items[position];
+   getItemByPosition(int position) => items[position];
 }
 
 class Item {

@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.dark,
-      // themeMode: ThemeMode.light,
+      // themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       theme: Mytheme.lightTheme(context),
       darkTheme: Mytheme.darkTheme(context),
       initialRoute: MyRoutes.cartPageRoute,

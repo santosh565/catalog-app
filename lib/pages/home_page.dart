@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_catalog/core/store.dart';
 import '../utils/routes.dart';
 import '../widgets/home_widgets/catalog_header.dart';
